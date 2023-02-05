@@ -29,6 +29,8 @@ mongoose.connect('mongodb://localhost:27017/ty-sy-nday-2023', { useNewUrlParser:
 app.use('/api/auth', authRouter);
 app.use('/api/users', userRouter);
 
+// multer
+app.use('/images', express.static(path.join(__dirname + '/images')));
 
 // export app
 module.exports = app;

@@ -9,7 +9,7 @@ const router = express.Router();
 router.get('/', authMiddle, userCtrl.getUserCurrent);
 
 // GET /api/users/:id - user by id //test done
-router.get('/:id', userCtrl.getUserById);
+router.get('/:id', authMiddle, userCtrl.getUserById);
 
 // export router
 module.exports = router;
