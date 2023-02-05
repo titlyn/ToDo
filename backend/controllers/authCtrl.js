@@ -20,17 +20,13 @@ exports.signup = (req, res, next) => {
             });
             // save user
             user.save()
-                .then(result => {
-                    res.status(201).json({
+                .then(result => res.status(201).json({
                         message: 'User created!',
                         result: result
-                    });
-                })
-                .catch(err => {
-                    res.status(500).json({
+                    }))
+                .catch(err => res.status(500).json({
                         message: 'Invalid authentication credentials!'
-                    });
-                });
+                    }));
         });
 };
 
@@ -63,15 +59,11 @@ exports.login = (req, res, next) => {
                         )
                     });
                 })
-                .catch(err => {
-                    res.status(401).json({
+                .catch(err => res.status(401).json({
                         message: 'Invalid authentication credentials!'
-                    });
-                });
+                    }));
         })
-        .catch(err => {
-            res.status(401).json({
+        .catch(err => res.status(401).json({
                 message: 'Invalid authentication credentials!'
-            });
-        });
+            }));
     }
