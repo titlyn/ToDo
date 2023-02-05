@@ -32,9 +32,9 @@ const userSchema = new mongoose.Schema({
         userProfileImageUrl: {type: String, required: true}
     }), required: true, default: []},
     // ratingList - [{userId, value}]
-    ratingList: {type: Array({
+    ratingsList: {type: Array({
         userId: {type: String, required: true},
-        value: {type: Number, required: true, max: 5}
+        rating: {type: Number, required: true, max: 5}
     }), required: true, default: []}
 });
 

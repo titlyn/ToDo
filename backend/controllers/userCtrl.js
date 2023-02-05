@@ -5,7 +5,7 @@ exports.getUserCurrent = (req, res, next) => {
     // TODO: Implement 
     User.findById(req.body._userId)
         .then(user => {
-            // check if user exists
+            // check if user is not exists
             if (!user) return res.status(401).json({
                     message: 'User not found'
                 });
@@ -24,7 +24,7 @@ exports.getUserById = (req, res, next) => {
     // TODO: Implement
     User.findById( req.params.id )
         .then(user => {
-            // check if user exists
+            // check if user is not exists
             if (!user) return res.status(401).json({
                     message: 'User not found'
                 });
@@ -38,31 +38,16 @@ exports.getUserById = (req, res, next) => {
         }));
 };
 
-// PUT /api/users - Modify user current - all info
-exports.modifyUserCurrent = (req, res, next) => {
-    // TODO: Implement
-    // check file exist
-    const thing = req.file ? {
-        ...JSON.parse(req.body.thing),
-        profileImageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
-    } : {
-        ...req.body
-    };
-    // update user
-    User.updateOne({ "_id": req.auth._userId }, { ...thing })
-        .then(() => res.status(201).json({ message: 'User updated successfully!' }))
-        .catch(error => res.status(400).json({ error }));
-};
-
 // PUT /api/users/:id - Modify user by id - subscribe to user or unsubscribe and follow or unfollow
 exports.subscribeAndFollowUserToggel = (req, res, next) => {
+    // TODO: Implement
     User.findById(req.params.id)
         .then(user => {
-            // check if user exists
+            // check if user is not exists
             if (!user) return res.status(401).json({
                     message: 'User not found'
                 });
-            // check if userCurrent is already a follower so the user is already subscription
+            // check if userCurrent is already a follower and => the user is already a subscription
             if (user.followersList.find( follower => follower.userId == req.auth._userId )) {
                 // remove userCurrent in the list of followers of the user 
                 User.updateOne({ "_id": req.params.id }, { $pull: { "followersList": {  userId: req.auth._userId }}})
@@ -94,4 +79,44 @@ exports.subscribeAndFollowUserToggel = (req, res, next) => {
             }
         })
         .catch(err => res.status(500).json({ message: "Auth failed" }));
-}
+};
+
+// PUT /api/users/:id/rating - Modify user by id - add rating 
+exports.addRateUser = (req, res, next) => {
+    // TODO: Implement
+    User.findById(req.params.id)
+        .then(user => {
+            // check if userCurrent did already rate the user
+            if (user.ratingsList.find( rating => rating.userId == req.body._userId )) {
+                // update rating
+                User.updateOne({ "_id": req.params.id, "ratingsList.userId": req.body._userId }, { $set: { "ratingsList.$.rating": req.body.rating }})
+                    .then(() => res.status(201).json({ message: 'User updated successfully!' }))
+                    .catch(error => res.status(400).json({ error }));
+            } else {
+                // add rating
+                User.updateOne({ "_id": req.params.id }, { $push: { "ratingsList": { 
+                    userId: req.body._userId,
+                    rating: req.body.rating
+                     }}})
+                    .then(() => res.status(201).json({ message: 'User updated successfully!' }))
+                    .catch(error => res.status(400).json({ error }));
+            }
+
+        })
+};
+
+// PUT /api/users - Modify user current - all info
+exports.modifyUserCurrent = (req, res, next) => {
+    // TODO: Implement
+    // check if file exist
+    const thing = req.file ? {
+        ...JSON.parse(req.body.thing),
+        profileImageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
+    } : {
+        ...req.body
+    };
+    // update user
+    User.updateOne({ "_id": req.auth._userId }, { ...thing })
+        .then(() => res.status(201).json({ message: 'User updated successfully!' }))
+        .catch(error => res.status(400).json({ error }));
+};
