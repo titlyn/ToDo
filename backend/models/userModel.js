@@ -15,7 +15,7 @@ const userSchema = new mongoose.Schema({
         lastName: {type: String, required: true},
         address: {type: String, required: true},
         phoneNumber: {type: String, required: true},
-        profileImageUrl: {type: String, required: true, default: 'https://www.w3schools.com/howto/img_avatar.png'},
+        profileImageUrl: {type: String, required: true, default: 'https://localhost:3000/images/default-profile-image.png'},
     },
     // isLogged - true/false
     isLogged: {type: Boolean, required: true, default: true},
