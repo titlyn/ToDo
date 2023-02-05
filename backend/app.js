@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const path = require('path');
 
 // import routes
 const authRouter = require('./routers/authRouter');
