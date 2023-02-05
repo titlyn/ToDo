@@ -16,7 +16,7 @@ app.use((req, res, next) => {
 });
 
 // connection to database mongodb
-mongoose.connect('mongodb://localhost:27017/mean', { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect('mongodb://localhost:27017/ty-sy-nday-2023', { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => console.log('Connected to database'))
     .catch(() => console.log('Connection failed'));
 
