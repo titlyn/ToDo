@@ -2,8 +2,8 @@ const User = require('../models/userModel');
 
 // GET /api/users - user current
 exports.getUserCurrent = (req, res, next) => {
-    // TODO: Implement
-    User.findById(req.auth._userId)
+    // TODO: Implement 
+    User.findById(req.body._userId)
         .then(user => {
             // check if user exists
             if (!user) return res.status(401).json({

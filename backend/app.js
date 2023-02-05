@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 
 // import routes
 const authRouter = require('./routers/authRouter');
-
+const userRouter = require('./routers/userRouter'); 
 
 // creation express app
 const app = express();
@@ -27,6 +27,7 @@ mongoose.connect('mongodb://localhost:27017/ty-sy-nday-2023', { useNewUrlParser:
 // routes
 // TODO: add routes
 app.use('/api/auth', authRouter);
+app.use('/api/users', userRouter);
 
 
 // export app

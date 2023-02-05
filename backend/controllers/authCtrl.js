@@ -2,7 +2,7 @@ const User = require('../models/userModel');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
-// POST /api/auth/signup
+// POST /api/auth/signup - signup
 exports.signup = (req, res, next) => {
     // TODO: Implement
     // hash password
@@ -18,6 +18,7 @@ exports.signup = (req, res, next) => {
                     ...req.body.personalInfo,
                 },
             });
+            console.log(user);
             // save user
             user.save()
                 .then(result => res.status(201).json({
@@ -30,10 +31,10 @@ exports.signup = (req, res, next) => {
         });
 };
 
-// POST /api/auth/login
+// POST /api/auth/login - login
 exports.login = (req, res, next) => {
     // TODO: Implement
-    User.find({ 'loginInfo.email': req.body.email })
+    User.findO({ 'loginInfo.email': req.body.email })
         .then(user => {
             // check if user exists
             if (!user) {
