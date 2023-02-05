@@ -1,5 +1,5 @@
 const User = require('../models/userModel');
-const bcrypt = require('bcryptjs');
+const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
 // POST /api/auth/signup
@@ -51,9 +51,10 @@ exports.login = (req, res, next) => {
                         });
                     }
                     res.status(200).json({
+                        // create token
                         message: 'Auth successful',
                         token: jwt.sign(
-                            {userId: user._id, email: user.loginInfo.email},
+                            {userId: user._id},
                             "TYSYNDAY",
                             {expiresIn: "24h"}
                         )
