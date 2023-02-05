@@ -87,15 +87,15 @@ exports.addRateUser = (req, res, next) => {
     User.findById(req.params.id)
         .then(user => {
             // check if userCurrent did already rate the user
-            if (user.ratingsList.find( rating => rating.userId == req.body._userId )) {
+            if (user.ratingsList.find( rating => rating.userId == req.auth._userId )) {
                 // update rating
-                User.updateOne({ "_id": req.params.id, "ratingsList.userId": req.body._userId }, { $set: { "ratingsList.$.rating": req.body.rating }})
+                User.updateOne({ "_id": req.params.id, "ratingsList.userId": req.auth._userId }, { $set: { "ratingsList.$.rating": req.body.rating }})
                     .then(() => res.status(201).json({ message: 'User updated successfully!' }))
                     .catch(error => res.status(400).json({ error }));
             } else {
                 // add rating
                 User.updateOne({ "_id": req.params.id }, { $push: { "ratingsList": { 
-                    userId: req.body._userId,
+                    userId: req.auth._userId,
                     rating: req.body.rating
                      }}})
                     .then(() => res.status(201).json({ message: 'User updated successfully!' }))
