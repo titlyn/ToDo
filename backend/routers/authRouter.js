@@ -4,10 +4,10 @@ const authCtrl = require('../controllers/authCtrl');
 // creation router
 const router = express.Router();
 
-// POST /api/auth/signup - signup
+// POST /api/auth/signup - signup // test done
 router.post('/signup', authCtrl.signup);
 
-// POST /api/auth/login - login
+// POST /api/auth/login - login // test done
 router.post('/login', authCtrl.login);
 
 // export router
