@@ -19,13 +19,13 @@ const userSchema = new mongoose.Schema({
     },
     // isLogged - true/false
     isLogged: {type: Boolean, required: true, default: true},
-    // subscriptionList - [{userId, userName, userImageUrl}]
+    // subscriptionList - [{userId, userName, userProfileImageUrl}]
     subscriptionsList: {type: Array({
         userId: {type: String, required: true},
         userName: {type: String, required: true},
         userProfileImageUrl: {type: String, required: true}
     }), required: true, default: []},
-    // followersList - [{userId, userName, userImageUrl}]
+    // followersList - [{userId, userName, userProfileImageUrl}]
     followersList: {type: Array({
         userId: {type: String, required: true},
         userName: {type: String, required: true},
