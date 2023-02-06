@@ -1,17 +1,18 @@
 const express = require('express');
 const chatCtrl = require('../controllers/chatCtrl');
+const authMiddle = require('../middlewares/authMiddle');
 
 // creation router
 const router = express.Router();
 
 // GET /api/chat - all chat for userCurrent
-router.get('/', chatCtrl.getAllChatUserCurrent);
+router.get('/', authMiddle, chatCtrl.getAllChatUserCurrent);
 
 // GET /api/chat/user/:id - get chat with an user
-router.get('/user/:id', chatCtrl.getChatUserById);
+router.get('/user/:id', authMiddle, chatCtrl.getChatUserById);
 
 // POST /api/chat/create - create chat with an user
-router.post('/create', chatCtrl.createChat)
+router.post('/create', authMiddle, chatCtrl.createChat)
 
 
 
