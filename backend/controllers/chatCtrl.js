@@ -9,6 +9,6 @@ exports.getChatUserById = (req, res, next) => {
     // TODO: Implement
 }
 // POST /api/chat/create - create chat with an user
-exports.creatChat = (req, res, next) => {
+exports.createChat = (req, res, next) => {
     // TODO: Implement
 }
