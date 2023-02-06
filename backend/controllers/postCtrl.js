@@ -5,6 +5,11 @@ exports.createPost = (req, res, next) => {
     // TODO: Implement
 }
 
+// GET /api/post - all post in actuality
+exports.getAllPostActuality = (req, res, next) => {
+    // TODO: Implement
+}
+
 // GET /api/post/user - all post of userCurrent
 exports.getAllPostUserCurrent = (req, res, next) => {
     // TODO: Implement
@@ -20,7 +25,7 @@ exports.likePost = (req, res, next) => {
     // TODO: Implement
 }
 
-// PUT /api/post - comment a post of an user
+// PUT /api/post/comment - comment a post of an user
 exports.commentPost = (req, res, next) => {
     // TODO: Implement
 }

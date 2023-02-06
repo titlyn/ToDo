@@ -5,6 +5,7 @@ const path = require('path');
 // import routes
 const authRouter = require('./routers/authRouter');
 const userRouter = require('./routers/userRouter'); 
+const postRouter = require('./routers/postRouter');
 
 // creation express app
 const app = express();
@@ -29,6 +30,7 @@ mongoose.connect('mongodb://localhost:27017/ty-sy-nday-2023', { useNewUrlParser:
 // TODO: add routes
 app.use('/api/auth', authRouter);
 app.use('/api/users', userRouter);
+app.use('/api/post', postRouter);
 
 // multer
 app.use('/images', express.static(path.join(__dirname + '/images')));
