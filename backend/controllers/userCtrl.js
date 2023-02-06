@@ -110,7 +110,7 @@ exports.modifyUserCurrent = (req, res, next) => {
     // TODO: Implement
     // check if file exist
     const thing = req.file ? {
-        ...JSON.parse(req.body.thing),
+        ...JSON.parse(req.body),
         profileImageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
     } : {
         ...req.body

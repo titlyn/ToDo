@@ -18,12 +18,11 @@ exports.signup = (req, res, next) => {
                     ...req.body.personalInfo,
                 },
             });
-            console.log(user);
             // save user
             user.save()
-                .then(result => res.status(201).json({
+                .then(userSaved => res.status(201).json({
                         message: 'User created!',
-                        result: result
+                        user: userSaved
                     }))
                 .catch(err => res.status(500).json({
                         message: 'Invalid authentication credentials!'
@@ -34,7 +33,7 @@ exports.signup = (req, res, next) => {
 // POST /api/auth/login - login
 exports.login = (req, res, next) => {
     // TODO: Implement
-    User.findO({ 'loginInfo.email': req.body.email })
+    User.findOne({ 'loginInfo.email': req.body.email })
         .then(user => {
             // check if user exists
             if (!user) {
@@ -68,4 +67,4 @@ exports.login = (req, res, next) => {
         .catch(err => res.status(401).json({
                 message: 'Invalid authentication credentials!'
             }));
-    }
+};

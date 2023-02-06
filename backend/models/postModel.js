@@ -20,7 +20,7 @@ const postSchema = new mongoose.Schema({
     // likesList - [{userId}]
     likesList: {type: Array({
         userId: {type: String, require: true},
-    })},
+    }), required: true, default: []},
     // postComment - [{userId, userName, userProfileImageUrl, commentContent, dateCreated}]
     postComment: {type: Array({
         userId: {type: String, required: true},
