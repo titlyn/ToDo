@@ -5,14 +5,14 @@ const authMiddle = require('../middlewares/authMiddle');
 // creation router
 const router = express.Router();
 
-// GET /api/chat - all chat for userCurrent
+// GET /api/chat - all chat for userCurrent // test done
 router.get('/', authMiddle, chatCtrl.getAllChatUserCurrent);
 
-// GET /api/chat/user/:id - get chat with an user
+// GET /api/chat/user/:id - get chat with an user // test done
 router.get('/user/:id', authMiddle, chatCtrl.getChatUserById);
 
 // POST /api/chat/create - create chat with an user // test dones
-router.post('/create', chatCtrl.createChat);
+router.post('/create', authMiddle, chatCtrl.createChat);
 
 
 
