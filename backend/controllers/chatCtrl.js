@@ -23,13 +23,13 @@ exports.getChatUserById = (req, res, next) => {
     })
     .catch(error => res.status(500).json({ error }));
 }
-// POST /api/chat/create - create chat with an user
+// POST /api/chat/create - create chat with an user // test done
 exports.createChat = (req, res, next) => {
     // TODO: Implement
     // create chat
     const chat = new Chat({
         usersIdList: [
-            { userId: req.auth._userId, userName: req.body.userNameCurrent },
+            { userId: req.body._userId, userName: req.body.userNameCurrent },
             { userId: req.body.userId, userName: req.body.userName }
         ]
     })

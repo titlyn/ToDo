@@ -11,8 +11,8 @@ router.get('/', authMiddle, chatCtrl.getAllChatUserCurrent);
 // GET /api/chat/user/:id - get chat with an user
 router.get('/user/:id', authMiddle, chatCtrl.getChatUserById);
 
-// POST /api/chat/create - create chat with an user
-router.post('/create', authMiddle, chatCtrl.createChat)
+// POST /api/chat/create - create chat with an user // test dones
+router.post('/create', chatCtrl.createChat);
 
 
 

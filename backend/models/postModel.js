@@ -27,7 +27,7 @@ const postSchema = new mongoose.Schema({
         userName: {type: String, required: true},
         userProfileImageUrl: {type: String, required: true},
         commentContent: {type: String, required: true},
-        dateCreated: {type: Date, required: true, default: Date.non()}
+        dateCreated: {type: Date, required: true, default: Date.now()}
     }), required: true, default: []}
 });
 
