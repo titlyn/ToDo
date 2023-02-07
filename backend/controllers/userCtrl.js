@@ -1,6 +1,6 @@
 const User = require('../models/userModel');
 
-// GET /api/users - user current
+// GET /api/user - user current
 exports.getUserCurrent = (req, res, next) => {
     // TODO: Implement 
     User.findById(req.body._userId)
@@ -19,7 +19,7 @@ exports.getUserCurrent = (req, res, next) => {
         }));
 };
 
-// GET /api/users/:id - user by id 
+// GET /api/user/:id - user by id 
 exports.getUserById = (req, res, next) => {
     // TODO: Implement
     User.findById( req.params.id )
@@ -38,7 +38,7 @@ exports.getUserById = (req, res, next) => {
         }));
 };
 
-// PUT /api/users/:id - Modify user by id - subscribe to user or unsubscribe and follow or unfollow
+// PUT /api/user/:id - Modify user by id - subscribe to user or unsubscribe and follow or unfollow
 exports.subscribeAndFollowUserToggel = (req, res, next) => {
     // TODO: Implement
     User.findById(req.params.id)
@@ -81,7 +81,7 @@ exports.subscribeAndFollowUserToggel = (req, res, next) => {
         .catch(err => res.status(500).json({ message: "Auth failed" }));
 };
 
-// PUT /api/users/:id/rating - Modify user by id - add rating 
+// PUT /api/user/:id/rating - Modify user by id - add rating 
 exports.addRateUser = (req, res, next) => {
     // TODO: Implement
     User.findById(req.params.id)
@@ -105,7 +105,7 @@ exports.addRateUser = (req, res, next) => {
         .catch(error => res.status(400).json({ error }));
 };
 
-// PUT /api/users - Modify user current - all info
+// PUT /api/user - Modify user current - all info
 exports.modifyUserCurrent = (req, res, next) => {
     // TODO: Implement
     // check if file exist
