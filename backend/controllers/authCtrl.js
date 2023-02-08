@@ -2,7 +2,7 @@ const User = require('../models/userModel');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
-// POST /api/auth/signup - signup
+// POST /api/auth/signup - signup // test done
 exports.signup = (req, res, next) => {
     // TODO: Implement
     // hash password
@@ -30,10 +30,10 @@ exports.signup = (req, res, next) => {
         });
 };
 
-// POST /api/auth/login - login
+// POST /api/auth/login - login // test done
 exports.login = (req, res, next) => {
     // TODO: Implement
-    User.findOne({ 'loginInfo.email': req.body.email })
+    User.findOne({ "loginInfo.email": req.body.email })
         .then(user => {
             // check if user exists
             if (!user) {
@@ -42,7 +42,7 @@ exports.login = (req, res, next) => {
                 });
             }
             // compare password with hashed password
-            bcrypt.compare(req.body.password, loginInfo.password)
+            bcrypt.compare(req.body.password, user.loginInfo.password)
                 .then(result => {
                     // check if password is correct
                     if (!result) {
@@ -61,10 +61,10 @@ exports.login = (req, res, next) => {
                     });
                 })
                 .catch(err => res.status(401).json({
-                        message: 'Invalid authentication credentials!'
+                        message: 'Invalid authentication credentials! ee'
                     }));
         })
         .catch(err => res.status(401).json({
-                message: 'Invalid authentication credentials!'
+                message: 'Invalid authentication credentials! aa'
             }));
 };
