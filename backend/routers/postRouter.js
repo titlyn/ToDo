@@ -6,8 +6,8 @@ const multerMiddle = require('../middlewares/multer-config');
 // creation router
 const router = express.Router();
 
-// POST /api/post - create post
-router.post('/', authMiddle, multerMiddle, postCtrl.commentPost);
+// POST /api/post - create post // test done
+router.post('/create', multerMiddle, postCtrl.createPost);
 
 // GET /api/post - all post in actuality
 router.get('/', authMiddle, postCtrl.getAllPostActuality);
@@ -18,8 +18,8 @@ router.get('/user', authMiddle, postCtrl.getAllPostUserCurrent);
 // GET /api/post/user/:id - all post of an user
 router.get('/user/:id', authMiddle, postCtrl.getAllPostUserById);
 
-// PUT /api/post - like a post of an user
-router.put('/', authMiddle, postCtrl.likePost);
+// PUT /api/post - like a post of an user //test done
+router.put('/', postCtrl.likePost);
 
 // PUT /api/post/comment - comment a post of an user
 router.put('/comment', authMiddle, postCtrl.commentPost);

@@ -1,6 +1,6 @@
 const Post = require('../models/postModel');
 
-// POST /api/post - create post
+// POST /api/post/create - create post // test done
 exports.createPost = (req, res, next) => {
     // TODO: Implement
     // check if file exist // create new post
@@ -12,8 +12,11 @@ exports.createPost = (req, res, next) => {
     } : {
         ...req.body
     };
+    const newPost = new Post({
+        ...post
+    })
     // save post
-    post.save()
+    newPost.save()
         .then(postSaved => res.status(201).json({
                 message: 'Post created!',
                 post: postSaved
@@ -50,20 +53,20 @@ exports.getAllPostUserById = (req, res, next) => {
         .catch(error => res.status(500).json({ error }));
 };
 
-// PUT /api/post - like a post of an user
+// PUT /api/post - like a post of an user // test done
 exports.likePost = (req, res, next) => {
     // TODO: Implement
     Post.findById(req.body.postId)
         .then(post => {
             // check if userCurrent liked the pot
-            if (post.likesList.find(like => like.userId == req.auth._userId)) {
+            if (post.likesList.find(like => like.userId == req.body._userId)) {
                 // dislike
-                Post.updateOne({ "_id": req.body.postId }, { $pull: { "likesList": { userId: req.auth._userId }}})
+                Post.updateOne({ "_id": req.body.postId }, { $pull: { "likesList": { userId: req.body._userId }}})
                     .then(() => res.status(201).json({ message: 'Post updated successfully!' }))
                     .catch(error => res.status(400).json({ error }));
             } else {
                 // like   
-                Post.updateOne({ "_id": req.body.postId }, { $push: { "likesList": { userId: req.auth._userId }}})
+                Post.updateOne({ "_id": req.body.postId }, { $push: { "likesList": { userId: req.body._userId }}})
                     .then(() => res.status(201).json({ message: 'Post updated successfully!' }))
                     .catch(error => res.status(400).json({ error }));
             }
