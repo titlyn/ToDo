@@ -15,7 +15,7 @@ router.get('/', authMiddle, postCtrl.getAllPostActuality);
 // GET /api/post/user - all post of userCurrent // test done //
 router.get('/user', authMiddle, postCtrl.getAllPostUserCurrent);
 
-// GET /api/post/user/:id - all post of an user // test done
+// GET /api/post/user/:id - all post of an user // test done //
 router.get('/user/:id', authMiddle, postCtrl.getAllPostUserById);
 
 // PUT /api/post - like a post of an user // test done //

@@ -44,7 +44,7 @@ mongoose.connect('mongodb://localhost:27017/ty-sy-nday-2023', { useNewUrlParser:
 app.use('/api/auth', authRouter); // test done
 app.use('/api/user', userRouter); // test done
 app.use('/api/post', postRouter); // test done
-app.use('/api/chat', chatRouter);
+app.use('/api/chat', chatRouter); // test done
 
 // multer
 app.use('/images', express.static(path.join(__dirname + '/images')));
