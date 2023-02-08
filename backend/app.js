@@ -23,7 +23,7 @@ app.use((req, res, next) => {
     next();
 });
 
-// connection to database mongodb compass
+// connection to database mongodb atlas
 
 mongoose.connect('mongodb+srv://herifanantenana:herifanantenana@cluster0.gi74axk.mongodb.net/tysynday?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => console.log('Connected to database'))
