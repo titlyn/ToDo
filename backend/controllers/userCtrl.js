@@ -38,6 +38,22 @@ exports.getUserById = (req, res, next) => {
         }));
 };
 
+// PUT /api/user/profile - Modify user current - all info // test done //
+exports.modifyUserCurrent = (req, res, next) => {
+    // TODO: Implement
+    // check if file exist
+    const thing = req.file ? {
+        ...JSON.parse(req.body),
+        profileImageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
+    } : {
+        ...req.body
+    };
+    // update user
+    User.updateOne({ "_id": req.auth._userId }, { ...thing })
+        .then(() => res.status(201).json({ message: 'User updated successfully!' }))
+        .catch(error => res.status(400).json({ error }));
+};
+
 // PUT /api/user/:id - Modify user by id - subscribe to user or unsubscribe and follow or unfollow // test done //
 exports.subscribeAndFollowUserToggel = (req, res, next) => {
     // TODO: Implement
@@ -81,7 +97,7 @@ exports.subscribeAndFollowUserToggel = (req, res, next) => {
         .catch(err => res.status(500).json({ message: "Auth failed" }));
 };
 
-// PUT /api/user/:id/rating - Modify user by id - add rating 
+// PUT /api/user/:id/rating - Modify user by id - add rating // test done //
 exports.addRateUser = (req, res, next) => {
     // TODO: Implement
     User.findById(req.params.id)
@@ -90,7 +106,7 @@ exports.addRateUser = (req, res, next) => {
             if (user.ratingsList.find( rating => rating.userId == req.auth._userId )) {
                 // update rating
                 User.updateOne({ "_id": req.params.id, "ratingsList.userId": req.auth._userId }, { $set: { "ratingsList.$.rating": req.body.rating }})
-                    .then(() => res.status(201).json({ message: 'User updated successfully!' }))
+                    .then(() => res.status(201).json({ message: 'User updated successfully!, rating user' }))
                     .catch(error => res.status(400).json({ error }));
             } else {
                 // add rating
@@ -102,21 +118,5 @@ exports.addRateUser = (req, res, next) => {
                     .catch(error => res.status(400).json({ error }));
             }
         })
-        .catch(error => res.status(400).json({ error }));
-};
-
-// PUT /api/user - Modify user current - all info
-exports.modifyUserCurrent = (req, res, next) => {
-    // TODO: Implement
-    // check if file exist
-    const thing = req.file ? {
-        ...JSON.parse(req.body),
-        profileImageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
-    } : {
-        ...req.body
-    };
-    // update user
-    User.updateOne({ "_id": req.auth._userId }, { ...thing })
-        .then(() => res.status(201).json({ message: 'User updated successfully!' }))
         .catch(error => res.status(400).json({ error }));
 };
