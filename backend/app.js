@@ -24,16 +24,17 @@ app.use((req, res, next) => {
 });
 
 // connection to database mongodb compass
-/*
-mongoose.connect('mongodb+srv://herifanantenana:herifanantenana@cluster0.gi74axk.mongodb.net/?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true })
-    .then(() => console.log('Connected to database'))
-    .catch(() => console.log('Connection failed'));
-*/
-// connection to database mongodb compass
-mongoose.connect('mongodb://localhost:27017/ty-sy-nday-2023', { useNewUrlParser: true, useUnifiedTopology: true })
+
+mongoose.connect('mongodb+srv://herifanantenana:herifanantenana@cluster0.gi74axk.mongodb.net/tysynday?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => console.log('Connected to database'))
     .catch(() => console.log('Connection failed'));
 
+// connection to database mongodb compass
+/*
+mongoose.connect('mongodb://localhost:27017/ty-sy-nday-2023', { useNewUrlParser: true, useUnifiedTopology: true })
+    .then(() => console.log('Connected to database'))
+    .catch(() => console.log('Connection failed'));
+*/
 // routes
 // TODO: add routes
 app.use('/api/auth', authRouter);
