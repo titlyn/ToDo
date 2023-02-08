@@ -75,7 +75,7 @@ exports.likePost = (req, res, next) => {
     
 };
 
-// PUT /api/post/comment - comment a post of an user
+// PUT /api/post/comment - comment a post of an user // test done
 exports.commentPost = (req, res, next) => {
     // TODO: Implement
     Post.updateOne({ "_id": req.body.postId }, {
