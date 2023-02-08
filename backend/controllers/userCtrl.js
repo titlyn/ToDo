@@ -1,9 +1,9 @@
 const User = require('../models/userModel');
 
-// GET /api/user - user current
+// GET /api/user - user current // test done //
 exports.getUserCurrent = (req, res, next) => {
     // TODO: Implement 
-    User.findById(req.body._userId)
+    User.findById(req.auth._userId)
         .then(user => {
             // check if user is not exists
             if (!user) return res.status(401).json({
@@ -19,7 +19,7 @@ exports.getUserCurrent = (req, res, next) => {
         }));
 };
 
-// GET /api/user/:id - user by id 
+// GET /api/user/:id/profile - user by id  // test done //
 exports.getUserById = (req, res, next) => {
     // TODO: Implement
     User.findById( req.params.id )
@@ -38,7 +38,7 @@ exports.getUserById = (req, res, next) => {
         }));
 };
 
-// PUT /api/user/:id - Modify user by id - subscribe to user or unsubscribe and follow or unfollow
+// PUT /api/user/:id - Modify user by id - subscribe to user or unsubscribe and follow or unfollow // test done //
 exports.subscribeAndFollowUserToggel = (req, res, next) => {
     // TODO: Implement
     User.findById(req.params.id)
@@ -54,7 +54,7 @@ exports.subscribeAndFollowUserToggel = (req, res, next) => {
                     .then(() => {
                         // and remove user in the list of subscriptions of the userCurrent
                         User.updateOne({ "_id": req.auth._userId }, { $pull: { "subscriptionsList": {  userId: req.params.id }}})
-                            .then(() => res.status(201).json({ message: 'User updated successfully!' }))
+                            .then(() => res.status(201).json({ message: 'User updated successfully!, subcription and follow' }))
                             .catch(error => res.status(400).json({ error }));
                     })
                     .catch(error => res.status(400).json({ error }));
@@ -67,12 +67,12 @@ exports.subscribeAndFollowUserToggel = (req, res, next) => {
                      }}})
                     .then(() => {
                         // and add user in the list of following of the userCurrent
-                        User.updateOne({ "_id": req.body._userId }, { $push: { "subscriptionsList": {
+                        User.updateOne({ "_id": req.auth._userId }, { $push: { "subscriptionsList": {
                             userId: req.params.id,
                             userName: user.personalInfo.lastName + " " + user.personalInfo.firstName,
                             userProfileImageUrl: user.personalInfo.profileImageUrl
                         }}})
-                            .then(() => res.status(201).json({ message: 'User updated successfully!' }))
+                            .then(() => res.status(201).json({ message: 'User updated successfully!, unsubcription and unfollow' }))
                             .catch(error => res.status(400).json({ error }));
                     })
                     .catch(error => res.status(400).json({ error }));

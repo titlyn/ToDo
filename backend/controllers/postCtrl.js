@@ -31,7 +31,7 @@ exports.getAllPostActuality = (req, res, next) => {
     
 };
 
-// GET /api/post/user - all post of userCurrent
+// GET /api/post/user - all post of userCurrent // test done //
 exports.getAllPostUserCurrent = (req, res, next) => {
     // TODO: Implement
     Post.find({ "posterInfo.userId": req.auth._userId })
