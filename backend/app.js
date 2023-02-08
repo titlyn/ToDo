@@ -41,8 +41,8 @@ mongoose.connect('mongodb://localhost:27017/ty-sy-nday-2023', { useNewUrlParser:
     
 // routes
 // TODO: add routes
-app.use('/api/auth', authRouter);
-app.use('/api/user', userRouter);
+app.use('/api/auth', authRouter); // test done
+app.use('/api/user', userRouter); // test done
 app.use('/api/post', postRouter);
 app.use('/api/chat', chatRouter);
 
