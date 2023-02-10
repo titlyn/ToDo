@@ -1,0 +1,9 @@
+// all mixins
+
+@mixin dfx($ai: center, $jc: center, $fd: row, $fw: wrap) {
+    display: flex;
+    align-items: $ai;
+    justify-content: $jc;
+    flex-direction: $fd;
+    flex-wrap: $fw;
+ }

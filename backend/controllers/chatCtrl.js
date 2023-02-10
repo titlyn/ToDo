@@ -1,6 +1,6 @@
 const Chat = require('../models/chatModel');
 
-// GET /api/chat - all chat for userCurrent // test done
+// GET /api/chat - all chat for userCurrent // test done //
 exports.getAllChatUserCurrent = (req, res, next) => {
     // TODO: Implement
     Chat.find({ "usersIdList.userId": req.auth._userId }) 
@@ -10,7 +10,7 @@ exports.getAllChatUserCurrent = (req, res, next) => {
         }))
         .catch(error => res.status(500).json({ error }));
 }
-// GET /api/chat/user/:id - get chat with an user // test done
+// GET /api/chat/user/:id - get chat with an user // test done //
 exports.getChatUserById = (req, res, next) => {
     // TODO: Implement
     Chat.find({ "usersIdList.userId": req.auth._userId })
@@ -24,7 +24,7 @@ exports.getChatUserById = (req, res, next) => {
     })
     .catch(error => res.status(500).json({ error }));
 }
-// POST /api/chat/create - create chat with an user // test done
+// POST /api/chat/create - create chat with an user // test done //
 exports.createChat = (req, res, next) => {
     // TODO: Implement
     // create chat

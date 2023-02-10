@@ -31,7 +31,7 @@ exports.getAllPostActuality = (req, res, next) => {
     
 };
 
-// GET /api/post/user - all post of userCurrent
+// GET /api/post/user - all post of userCurrent // test done //
 exports.getAllPostUserCurrent = (req, res, next) => {
     // TODO: Implement
     Post.find({ "posterInfo.userId": req.auth._userId })
@@ -42,7 +42,7 @@ exports.getAllPostUserCurrent = (req, res, next) => {
         .catch(error => res.status(500).json({ error }));
 };
 
-// GET /api/post/user/:id - all post of an user
+// GET /api/post/user/:id - all post of an user // test done //
 exports.getAllPostUserById = (req, res, next) => {
     // TODO: Implement
     Post.find({ "posterInfo.userId": req.params.id })
@@ -53,20 +53,20 @@ exports.getAllPostUserById = (req, res, next) => {
         .catch(error => res.status(500).json({ error }));
 };
 
-// PUT /api/post - like a post of an user // test done
+// PUT /api/post - like a post of an user // test done //
 exports.likePost = (req, res, next) => {
     // TODO: Implement
     Post.findById(req.body.postId)
         .then(post => {
             // check if userCurrent liked the pot
-            if (post.likesList.find(like => like.userId == req.body._userId)) {
+            if (post.likesList.find(like => like.userId == req.auth._userId)) {
                 // dislike
-                Post.updateOne({ "_id": req.body.postId }, { $pull: { "likesList": { userId: req.body._userId }}})
+                Post.updateOne({ "_id": req.body.postId }, { $pull: { "likesList": { userId: req.auth._userId }}})
                     .then(() => res.status(201).json({ message: 'Post updated successfully!' }))
                     .catch(error => res.status(400).json({ error }));
             } else {
                 // like   
-                Post.updateOne({ "_id": req.body.postId }, { $push: { "likesList": { userId: req.body._userId }}})
+                Post.updateOne({ "_id": req.body.postId }, { $push: { "likesList": { userId: req.auth._userId }}})
                     .then(() => res.status(201).json({ message: 'Post updated successfully!' }))
                     .catch(error => res.status(400).json({ error }));
             }
@@ -75,7 +75,7 @@ exports.likePost = (req, res, next) => {
     
 };
 
-// PUT /api/post/comment - comment a post of an user // test done
+// PUT /api/post/comment - comment a post of an user // test done //
 exports.commentPost = (req, res, next) => {
     // TODO: Implement
     Post.updateOne({ "_id": req.body.postId }, {
