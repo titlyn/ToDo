@@ -4,10 +4,10 @@
     "slug": "mobile-app",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/intro.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/spalshh.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
