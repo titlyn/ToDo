@@ -5,8 +5,8 @@ import Header from './HeaderHomeScreen';
 import NewPost from './PostField';
 import TabBar from './TabBar';
 import Profile from '../assets/rakooot.png';
-// import Post from './Post';
-// import data from './data';
+import Post from './Post';
+import data from '../data/homedata';
 
 // Post's....
 
