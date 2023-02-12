@@ -10,7 +10,7 @@ const router = express.Router();
 router.post('/create', authMiddle, multerMiddle, postCtrl.createPost);
 
 // GET /api/post - all post in actuality
-router.get('/', authMiddle, postCtrl.getAllPostActuality);
+router.get('/', postCtrl.getAllPostActuality);
 
 // GET /api/post/user - all post of userCurrent // test done //
 router.get('/user', authMiddle, postCtrl.getAllPostUserCurrent);

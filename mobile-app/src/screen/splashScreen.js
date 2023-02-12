@@ -1,8 +1,16 @@
 import React from "react";
 import { StyleSheet, Text, View, Image } from "react-native";
-import logo from '../../assets/logo.png'
+import logo from '../../assets/logo.png';
+import { useEffect } from "react";
 
-export default function SplashScreen() {
+export default function SplashScreen({navigation}) {
+
+    useEffect(()=>{
+        setTimeout(()=>{
+            navigation.navigate('')
+        }, 5000)
+    })
+
     return (
         <View style={styles.container}>
             <View style={styles.logocontainer}>

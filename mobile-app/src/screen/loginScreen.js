@@ -19,8 +19,8 @@ export default function LoginScreen({navigation}){
             const {data} =  await axios.post(
                 'http://192.168.43.125:3000/api/auth/login',
                 {
-                    email,
-                    password
+                    "email": email,
+                    "password": password
                 },
                 {
                     headers: {

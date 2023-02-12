@@ -5,6 +5,7 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import { LinearGradient } from 'expo-linear-gradient';
 import data from '../data/data';
 import Post from '../components/Post';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 export default function ProfileScreen({ navigation }) {
 
@@ -14,7 +15,11 @@ export default function ProfileScreen({ navigation }) {
         <ScrollView style={{flex:1, backgroundColor:'#1C1C1C'}}>
             <View style={{width:'100%', height:'100%', alignContent:'center',marginTop:13, backgroundColor:'#1C1C1C', flex:1}}>
                 <View style={{width:'100%', marginBottom:10, height:'auto'}}>
+                <View style={{flexDirection:'row', alignContent:'center', alignItems:'center'}}>
+                <TouchableOpacity onPress={()=>navigation.goBack()}>
                 <Ionicons name='arrow-back' size={25} style={{margin:20, color:'white'}}></Ionicons>
+                </TouchableOpacity>
+                <Text style={{fontSize:19, color:'white', alignSelf:'center'}}> @sesedrakely </Text></View>
                 <Image source={Sedra} style={{alignSelf:'center',borderRadius:50, resizeMode:'cover', width:100, height:100}}></Image>
                 <View style={{width:'100%', backgroundColor:'#1C1C1C', height:'auto', marginVertical:15}}>
                     <Text style={{fontFamily:'Montserrat-SemiBold', fontSize:25,color:'white', alignSelf:'center', fontWeight:'bold'}}>{currentUserName}</Text>
@@ -44,7 +49,7 @@ export default function ProfileScreen({ navigation }) {
                         <Image source={Sedra} style={{borderRadius:17, resizeMode:'cover', width:50, height:50 }}></Image>
                     </View>
                     <View style={{backgroundColor:'#2B2B2B', width:'70%', height:50,borderRadius:17,justifyContent:"center"}}>
-                        <Pressable style={{paddingLeft:15}} onPress={()=>{}}>
+                        <Pressable style={{paddingLeft:15}} onPress={()=>{navigation.navigate('NewPostScreen')}}>
                             <Text style={{color:'#fff9', fontSize:14, fontFamily: 'Montserrat',}}>Publier quelque chose...</Text>
                         </Pressable>
                     </View>

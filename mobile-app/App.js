@@ -9,6 +9,8 @@ import HomeScreen from './src/screen/homescreen';
 import MessageScreen from './src/screen/messageScreen';
 import NotificationScreen from './src/screen/notificationScreen';
 import ProfileScreen from './src/screen/profileScreen';
+import NewPostScreen from './src/screen/newPostScreen';
+import NavigationScreen from './src/screen/navigation'
 
 // function LoginScreen (){
 //   const getData = () => {
@@ -42,7 +44,6 @@ import ProfileScreen from './src/screen/profileScreen';
 const Stack = createStackNavigator();
 
 export default function App() {
-const [name, setName] = useState('');
 const [isLoggedIn, setIsLoggedIn] = useState(true);
   
   useEffect(()=>{
@@ -52,13 +53,20 @@ const [isLoggedIn, setIsLoggedIn] = useState(true);
   }, []);
 
   return (
+    // <NavigationContainer>
+    //     <Stack.Navigator initialRouteName='HomeScreen'>
+    //     <Stack.Screen name="LoginScreen" component={LoginScreen} options={{headerShown:false}}/>
+    //     <Stack.Screen name="HomeScreen" component={HomeScreen} options={{headerShown:false}}/>
+    //     <Stack.Screen name="MessageScreen" component={MessageScreen} options={{headerShown:false}}/>
+    //     <Stack.Screen name="NotificationScreen" component={NotificationScreen} options={{headerShown:false}}/>
+    //     <Stack.Screen name='ProfileScreen' component={ProfileScreen} options={{headerShown:false}}/>
+    //     <Stack.Screen name='NewPostScreen' component={NewPostScreen} options={{headerShown:false}}/>
+    //   </Stack.Navigator>
+    // </NavigationContainer>
     <NavigationContainer>
-        <Stack.Navigator initialRouteName='ProfileScreen'>
+        <Stack.Navigator initialRouteName='NavigationScreen'>
         <Stack.Screen name="LoginScreen" component={LoginScreen} options={{headerShown:false}}/>
-        <Stack.Screen name="HomeScreen" component={HomeScreen} options={{headerShown:false}}/>
-        <Stack.Screen name="MessageScreen" component={MessageScreen} options={{headerShown:false}}/>
-        <Stack.Screen name="NotificationScreen" component={NotificationScreen} options={{headerShown:false}}/>
-        <Stack.Screen name='ProfileScreen' component={ProfileScreen} options={{headerShown:false}}/>
+        <Stack.Screen name="NavigationScreen" component={NavigationScreen} options={{headerShown:false}}/>
       </Stack.Navigator>
     </NavigationContainer>
   );
