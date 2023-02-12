@@ -1,7 +1,7 @@
 import React from 'react';
 import { Text,  View, StyleSheet, Image, TextInput, Pressable, ScrollView, Dimensions } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
-import Logo from '../assets/logo_blanc.png';
+import Logo from '../../assets/logo_blanc.png';
 
 
 export default function Header() {

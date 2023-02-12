@@ -1,14 +1,53 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-import HomeScreen from './src/screen/homescreen.JS';
+import { Button, StyleSheet, Text, View } from 'react-native';
+import {createStackNavigator, StackNavigator} from '@react-navigation/stack';
+import { useState, useEffect } from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import axios from 'axios';
+import LoginScreen from './src/screen/loginScreen';
+import HomeScreen from './src/screen/homescreen';
 
+// function LoginScreen (){
+//   const getData = () => {
+
+//     // axios.get('https://jsonplaceholder.typicode.com/posts')
+//     // axios.get('https://openweathermap.org/api')
+//     axios.get('http://192.168.43.125:3000/api/post')
+//     .then(response => console.log(response.data[0].posterInfo.userName))
+//     .catch(error=> console.log(error))
+//   }
+  
+//   return(<View style = {styles.container}>
+//     <Text>Hello Login</Text>
+//     <Button onPress={getData} title='HELLO'></Button>
+//   </View>)
+// }
+
+// function HomeScreen (){
+//   return(<View style = {styles.container}>
+//     <Text>Hello HomeScreen</Text>
+//   </View>)
+// }
+
+const Stack = createStackNavigator();
 
 export default function App() {
+const [name, setName] = useState('');
+const [isLoggedIn, setIsLoggedIn] = useState(true);
+  
+  useEffect(()=>{
+    setTimeout(()=>{
+      setIsLoggedIn(true);
+    }, 2000);
+  }, []);
+
   return (
-    <View style={styles.container}>
-      <HomeScreen></HomeScreen>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+        <Stack.Navigator initialRouteName='HomeScreen'>
+        <Stack.Screen name="LoginScreen" component={LoginScreen} options={{headerShown:false}}/>
+        <Stack.Screen name="HomeScreen" component={HomeScreen} options={{headerShown:false}}/>
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 

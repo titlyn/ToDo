@@ -7,7 +7,9 @@ import Header from '../components/header';
 // import Profile from '../assets/rakooot.png';
 // import Post from './Post';
 // import data from './data';
-
+import NewPost from '../components/PostField';
+import Post from '../components/Post';
+import data from '../components/data';
 // Post's....
 
 export default function HomeScreen({ navigation }) {
@@ -16,7 +18,7 @@ export default function HomeScreen({ navigation }) {
             <Header></Header>
             <View style={{backgroundColor:'#1C1C1C', flex:1}}>
                 <ScrollView style={{flex:1}}>
-                    {/* <NewPost></NewPost> */}
+                    <NewPost></NewPost>
                     {data.map(({_id, username, postTime, postImg, likes, comments, shared, liked, post, profilePic})=> (
                     <Post 
                     key={_id} 
