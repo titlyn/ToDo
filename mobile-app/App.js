@@ -6,6 +6,8 @@ import { NavigationContainer } from '@react-navigation/native';
 import axios from 'axios';
 import LoginScreen from './src/screen/loginScreen';
 import HomeScreen from './src/screen/homescreen';
+import MessageScreen from './src/screen/messageScreen';
+import NotificationScreen from './src/screen/notificationScreen';
 
 // function LoginScreen (){
 //   const getData = () => {
@@ -43,9 +45,11 @@ const [isLoggedIn, setIsLoggedIn] = useState(true);
 
   return (
     <NavigationContainer>
-        <Stack.Navigator initialRouteName='HomeScreen'>
+        <Stack.Navigator initialRouteName='NotificationScreen'>
         <Stack.Screen name="LoginScreen" component={LoginScreen} options={{headerShown:false}}/>
         <Stack.Screen name="HomeScreen" component={HomeScreen} options={{headerShown:false}}/>
+        <Stack.Screen name="MessageScreen" component={MessageScreen} options={{headerShown:false}}/>
+        <Stack.Screen name="NotificationScreen" component={NotificationScreen} options={{headerShown:false}}/>
       </Stack.Navigator>
     </NavigationContainer>
   );
