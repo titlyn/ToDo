@@ -8,6 +8,7 @@ import LoginScreen from './src/screen/loginScreen';
 import HomeScreen from './src/screen/homescreen';
 import MessageScreen from './src/screen/messageScreen';
 import NotificationScreen from './src/screen/notificationScreen';
+import ProfileScreen from './src/screen/profileScreen';
 
 // function LoginScreen (){
 //   const getData = () => {
@@ -18,7 +19,14 @@ import NotificationScreen from './src/screen/notificationScreen';
 //     .then(response => console.log(response.data[0].posterInfo.userName))
 //     .catch(error=> console.log(error))
 //   }
-  
+// function LoginScreen (){
+//   const getData = () => {
+
+//     axios.get('https://jsonplaceholder.typicode.com/posts')
+//     .then(response => console.log(response))
+//     .catch(error=> console.log(error))
+//   }
+// }
 //   return(<View style = {styles.container}>
 //     <Text>Hello Login</Text>
 //     <Button onPress={getData} title='HELLO'></Button>
@@ -45,11 +53,12 @@ const [isLoggedIn, setIsLoggedIn] = useState(true);
 
   return (
     <NavigationContainer>
-        <Stack.Navigator initialRouteName='NotificationScreen'>
+        <Stack.Navigator initialRouteName='ProfileScreen'>
         <Stack.Screen name="LoginScreen" component={LoginScreen} options={{headerShown:false}}/>
         <Stack.Screen name="HomeScreen" component={HomeScreen} options={{headerShown:false}}/>
         <Stack.Screen name="MessageScreen" component={MessageScreen} options={{headerShown:false}}/>
         <Stack.Screen name="NotificationScreen" component={NotificationScreen} options={{headerShown:false}}/>
+        <Stack.Screen name='ProfileScreen' component={ProfileScreen} options={{headerShown:false}}/>
       </Stack.Navigator>
     </NavigationContainer>
   );
