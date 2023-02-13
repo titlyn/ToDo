@@ -3,51 +3,81 @@ import image from '../../assets/fond.png';
 import Logo from '../../assets/black.png';
 import React, { useContext, useState } from 'react';
 import axios from 'axios';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { Alert } from 'react-native';
 
 export default function LoginScreen({navigation}){
     const [isLoading, setIsLoading] = useState(false);
     const [email, setEmail] = useState(null);
     const [password, setPassword] = useState(null);
     const [error, setError] = useState('');
-    const [userInfo, setUserInfo] = useState({});
 
 //     // axios.get('https://jsonplaceholder.typicode.com/posts')
 
-    const login = async (email, password) => {
-        setIsLoading(true);
-        try {
-            const {data} =  await axios.post(
-                'http://192.168.43.125:3000/api/auth/login',
-                {
-                    "email": email,
-                    "password": password
-                },
-                {
-                    headers: {
-                        'Content-Type': "application/json",
-                        'Accept': "application/json",
+const login = async (email, password) => {
+    setIsLoading(true);
+    try {
+        const data =  await axios.post(
+            'http://192.168.43.17:3000/api/auth/login',
+            {
+                "email": email,
+                "password": password
+            },
+            {
+                headers: {
+                    'Content-Type': "application/json",
+                    'Accept': "application/json",
                 }
-            }
-        );
-        
-        if (data.success) {
-            let userInfo = data;
-            setUserInfo(userInfo);
-            AsyncStorage.setItem('userInfo', JSON.stringify(userInfo));
-            setIsLoading(false);
-            console.log('hello')
-            return true;
-    }   else {
-            setError(data.message);
-            setIsLoading(false);
-    }
+             }
+         );
+    if (data) {
+       console.log(data.data.message)
+          let token = data.data.token;
+       await AsyncStorage.setItem('token', token);
+        let token_stock;
+        token_stock = await AsyncStorage.getItem('token');
+        console.log('stocké :' + token_stock);
+        navigation.replace('NavigationScreen');
 
-    } catch (e) {
-        console.log(e);
-        console.log(`login error ${e}`);
+        return true;
+}   else {
+        setError(data.message);
         setIsLoading(false);
-    }
-    };
+        Alert.alert('Erreur', data.message);}
+
+} catch (e) {
+    console.log(e);
+    console.log(`login error ${e}`);
+    setIsLoading(false);
+    Alert.alert('Verifier vos informations')
+}
+};
+
+// var donnees = {};
+
+// const getData = async () => {
+//     try {
+//         const token = await AsyncStorage.getItem('token')
+//        if (token) {
+//         await axios.get('http://192.168.43.17:3000/api/user/',
+//         {
+//             'headers':
+//             {
+//               "Authorization" : 'bearer '+ token  
+//             }
+//         })
+//         .then((donnee)=>{
+//             donnees=donnee.data.user;    
+//             setUserInfo(donnees)
+//             console.log(userInfo.personalInfo)
+        
+//         })
+//         .catch((error)=>console.log(error))
+//         }
+//     } catch (error) {
+//         console.log(error);
+//     }
+// }
 
     return (
         <View style={loginStyle.container}>
@@ -65,7 +95,10 @@ export default function LoginScreen({navigation}){
                     <View style={{ paddingVertical: 30 }}>
                         <Pressable style={loginStyle.boutonPrimary} onPress={() => {
                             login(email, password);
-                            console.log(email, password);
+                            // console.log(email, password);
+                            // getData();
+                            console.log('tongaaa');
+                            // console.log(donnees)
                             }}>
                             <Text style={{ color: '#fff', fontSize: 14, fontFamily: 'Montserrat' }}>Se connecter</Text>
                         </Pressable>

@@ -11,6 +11,7 @@ import NotificationScreen from './src/screen/notificationScreen';
 import ProfileScreen from './src/screen/profileScreen';
 import NewPostScreen from './src/screen/newPostScreen';
 import NavigationScreen from './src/screen/navigation'
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 // function LoginScreen (){
 //   const getData = () => {
@@ -44,13 +45,30 @@ import NavigationScreen from './src/screen/navigation'
 const Stack = createStackNavigator();
 
 export default function App() {
-const [isLoggedIn, setIsLoggedIn] = useState(true);
-  
-  useEffect(()=>{
-    setTimeout(()=>{
-      setIsLoggedIn(true);
-    }, 2000);
-  }, []);
+
+  const [isVerified, setIsVerified] = useState(true);
+
+  const isLoggedIn = async () => {
+    try {
+        setIsVerified(false)
+        const token = await AsyncStorage.getItem('token');
+        if (token) {
+            setUserToken(token);
+        }
+        setIsVerified(true)
+    }
+    catch (e) {
+        console.log(e);
+    }
+    finally {
+        setIsLoading(false);
+    }
+};
+
+useEffect(() => {
+    isLoggedIn();
+}
+, []);
 
   return (
     // <NavigationContainer>
@@ -64,7 +82,7 @@ const [isLoggedIn, setIsLoggedIn] = useState(true);
     //   </Stack.Navigator>
     // </NavigationContainer>
     <NavigationContainer>
-        <Stack.Navigator initialRouteName='NavigationScreen'>
+        <Stack.Navigator initialRouteName={isVerified?'NavigationScreen':'LoginScreen'}>
         <Stack.Screen name="LoginScreen" component={LoginScreen} options={{headerShown:false}}/>
         <Stack.Screen name="NavigationScreen" component={NavigationScreen} options={{headerShown:false}}/>
       </Stack.Navigator>

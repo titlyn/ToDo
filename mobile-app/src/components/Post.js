@@ -15,13 +15,16 @@ export default class Post extends React.Component{
         this.setState({isliked: !this.state.isliked});
     }
 
+    imgProfile = this.props.ProfileImg;
+    imgPost = this.props.PostImg;
+
     render(){
     return(
         <LinearGradient colors={['#474747', '#1C1C1C']} start={{x: 0, y: 0}} end={{x:0.80, y: 1}} style={{borderWidth:1,borderColor:'#474747', width:'88%',height:'auto',borderRadius:20,marginHorizontal:22, marginVertical:10,}}>
          
         <View style= {{width:"100%",height:'auto',borderRadius:20,marginBottom:6, }}>
             <View style ={{width:"100%",height:"auto",flexDirection:"row",marginTop:10, marginBottom:3}}>
-                <Image source={this.props.ProfileImg} style={{borderRadius:30, resizeMode:'cover', width:45, height:45,marginLeft:20}}></Image>
+                <Image source={{uri:this.imgProfile}} style={{borderRadius:30, resizeMode:'cover', width:45, height:45,marginLeft:20}}></Image>
                 <View style = {{justifyContent:'center', paddingHorizontal:12}}>
                     <Text style={{fontFamily:'Montserrat-SemiBold', color:'#fff'}}>{this.props.Username}</Text>
                     <Text style = {{fontFamily:'Montserrat',fontSize:10, color:'white'}}>{this.props.Date}</Text>
@@ -29,7 +32,7 @@ export default class Post extends React.Component{
             </View>
             {this.props.PostImg&&<View style = {{overflow:'hidden', width:'100%', height:200, marginVertical:5}}>
             <DoubleClick singleTap={() => { console.log("single tap"); }} doubleTap={() => { console.log("double tap"); this.updateLike(); }} delay={200} >
-                <Image source={this.props.PostImg} style={{resizeMode:'cover', width:'100%', height:200 }}></Image>
+                <Image source={{uri:this.imgPost}} style={{resizeMode:'cover', width:'100%', height:200 }}></Image>
             </DoubleClick>
             </View>}
             {this.props.Description&&<View style = {{width:'90%',height:'auto',alignSelf:"center", marginVertical:6}}>
